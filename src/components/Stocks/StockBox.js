@@ -1,11 +1,11 @@
-import StockPlace from "./StockPlace";
+import StockPlace from "../BasicComponents/StockPlace";
 import {useMaterials} from "../../providers/MaterialsProvider";
 import {usePlacesToChange, useSetPlacesToChange} from "../../providers/PlacesToChangeProvider";
 import {useProducts} from "../../providers/ProductsProvider";
-import {useSelector} from "react-redux";
+import {useUser} from "../../providers/UserProvider";
 
 const StockBox = ({box, type}) => {
-    const user = useSelector(state => state.user.userInfo);
+    const user = useUser();
     const items = {
         entry: useMaterials(),
         output: useProducts()

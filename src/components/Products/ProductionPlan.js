@@ -56,6 +56,10 @@ const ProductionPlan = ({processes, setProcesses, productId}) => {
 
     const deleteHandler = (e) => {
         e.preventDefault();
+        const item = processes
+            .find(process => process.queue === detailsBox.process_queue);
+        setProcesses(processes.filter(process =>
+            process?.production_process_id !== item.production_process_id));
     };
 
     const productionPlanItems = processes

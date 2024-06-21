@@ -28,7 +28,7 @@ const ProductionItem = ({order}) => {
             const response = await fetch(
                 `${api}/orders/done`,
                 {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },

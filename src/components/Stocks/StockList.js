@@ -2,14 +2,14 @@ import {RxCross2} from "react-icons/rx";
 import React from "react";
 import {useMaterials} from "../../providers/MaterialsProvider";
 import {usePlacesToChange, useSetPlacesToChange} from "../../providers/PlacesToChangeProvider";
-import useLoadData from "../../hooks/useLoadData";
 import {useEntryStock, useSetEntryStock} from "../../providers/EntryStockProvider";
 import {useOutputStock, useSetOutputStock} from "../../providers/OutputStockProvider";
 import {useProducts} from "../../providers/ProductsProvider";
-import {useSelector} from "react-redux";
+import {useUser} from "../../providers/UserProvider";
+import useUploadData from "../../hooks/useUploadData";
 
 const StockList = ({type}) => {
-    const user = useSelector(state => state.user.userInfo);
+    const user = useUser();
     const placesToChange = usePlacesToChange();
     const setPlacesToChange = useSetPlacesToChange();
     const items = {
@@ -23,7 +23,7 @@ const StockList = ({type}) => {
     const setEntryStock = useSetEntryStock();
     const setOutputStock = useSetOutputStock();
 
-    const [loadData] = useLoadData();
+    const [uploadData] = useUploadData();
 
     const setStock = (newPlaces) => {
         if (type === "entry") {
@@ -81,7 +81,7 @@ const StockList = ({type}) => {
             return newPlace;
         });
 
-        loadData(data_type[type], changedPlaces).then(() => {
+        uploadData(data_type[type], changedPlaces).then(() => {
             const newPlaces = places[type].map((place) => {
                 if (placesToChange.find((placeToChange) =>
                     placeToChange === place[place_id[type]])) {

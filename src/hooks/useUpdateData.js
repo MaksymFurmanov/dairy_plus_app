@@ -1,16 +1,16 @@
 import {useServer} from "../providers/ServerProvider";
 import {useState} from "react";
 
-const useLoadDataItem = () => {
+const useUpdateData = () => {
     const api = useServer();
     const [loading, setLoading] = useState(false);
 
-    const loadDataItem = async (type, object) => {
+    const updateDataItem = async (type, object) => {
         setLoading(true);
         try {
-            const response = await fetch(`${api}/${type}/new`,
+            const response = await fetch(`${api}/${type}/update`,
                 {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -28,7 +28,7 @@ const useLoadDataItem = () => {
         }
     }
 
-    return [loadDataItem, loading];
+    return [updateDataItem, loading];
 }
 
-export default useLoadDataItem;
+export default useUpdateData;

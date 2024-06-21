@@ -6,7 +6,7 @@ const ServerProvider = ({children}) => {
     const API = "http://localhost:8083";
 
     return <ServerContext.Provider value={API}>
-            {children}
+        {children}
     </ServerContext.Provider>
 }
 

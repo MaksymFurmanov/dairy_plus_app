@@ -1,9 +1,9 @@
 import React from 'react';
 import {FaCheck} from 'react-icons/fa';
-import {useSelector} from "react-redux";
+import {useUser} from "../../providers/UserProvider";
 
 const ProductionProcess = ({production_process, queue, doneHandler}) => {
-    const user = useSelector(state => state.user.userInfo);
+    const user = useUser();
 
     const changeAccess = (
         user.department_id === production_process.department_id ||

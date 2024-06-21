@@ -1,5 +1,6 @@
 import {createContext, useContext} from "react";
 import useReadData from "../hooks/useReadData";
+import Alert from "../components/BasicComponents/Alert";
 
 const EntryStockContext = createContext(undefined);
 const SetEntryStockContext = createContext(undefined);
@@ -10,7 +11,7 @@ const EntryStockProvider = ({children}) => {
 
     return <SetEntryStockContext.Provider value={setEntryStock}>
         <EntryStockContext.Provider value={entryStock}>
-            {loading ? <p>Loading...</p>: children}
+            {loading ? <Alert type={"loading"}>Loading...</Alert> : children}
         </EntryStockContext.Provider>
     </SetEntryStockContext.Provider>
 }

@@ -7,10 +7,10 @@ import {useMaterials, useSetMaterials} from "../../providers/MaterialsProvider";
 import {useSetTestsMaterials} from "../../providers/TestsMaterialsProvider";
 import useDeleteData from "../../hooks/useDeleteData";
 import {useSetOrders} from "../../providers/OrdersProvider";
-import {useSelector} from "react-redux";
+import {useUser} from "../../providers/UserProvider";
 
 const OrdersTable = ({items, type}) => {
-    const user = useSelector(state => state.user.userInfo);
+    const user = useUser();
     const materials = useMaterials();
     const setMaterials = useSetMaterials();
     const setTestsMaterials = useSetTestsMaterials();
@@ -73,7 +73,7 @@ const OrdersTable = ({items, type}) => {
 
         tableItems = items.map((order, index) => {
             let status;
-            if (order.production_process_id === null) {
+            if (!order?.productionProcess?.queue) {
                 status = "Začiatok výroby"
             } else {
                 status = order.productionProcess.done_name

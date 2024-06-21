@@ -1,5 +1,6 @@
 import {createContext, useContext} from "react";
 import useReadData from "../hooks/useReadData";
+import Alert from "../components/BasicComponents/Alert";
 
 const MaterialsContext = createContext(undefined);
 const SetMaterialsContext = createContext(undefined);
@@ -10,7 +11,7 @@ const MaterialsProvider = ({children}) => {
 
     return <SetMaterialsContext.Provider value={setMaterials}>
         <MaterialsContext.Provider value={materials}>
-            {loading ? <p>Loading...</p>: children}
+            {loading ? <Alert type={"loading"}>Loading...</Alert> : children}
         </MaterialsContext.Provider>
     </SetMaterialsContext.Provider>
 }

@@ -1,5 +1,6 @@
 import {createContext, useContext} from "react";
 import useReadData from "../hooks/useReadData";
+import Alert from "../components/BasicComponents/Alert";
 
 const ProductsContext = createContext(undefined);
 const SetProductsContext = createContext(undefined);
@@ -10,7 +11,7 @@ const ProductsProvider = ({children}) => {
 
     return <SetProductsContext.Provider value={setProducts}>
         <ProductsContext.Provider value={products}>
-            {loading ? <p>Loading...</p>: children}
+            {loading ? <Alert type={"loading"}>Loading...</Alert> : children}
         </ProductsContext.Provider>
     </SetProductsContext.Provider>
 }

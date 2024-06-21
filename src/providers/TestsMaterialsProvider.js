@@ -1,5 +1,6 @@
 import {createContext, useContext} from "react";
 import useReadData from "../hooks/useReadData";
+import Alert from "../components/BasicComponents/Alert";
 
 const TestsMaterialsContext = createContext(undefined);
 const SetTestsMaterialsContext = createContext(undefined);
@@ -9,7 +10,7 @@ const TestsMaterialsProvider = ({children}) => {
 
     return <SetTestsMaterialsContext.Provider value={setTestsMaterials}>
         <TestsMaterialsContext.Provider value={testsMaterials}>
-            {loading ? <p>Loading...</p>: children}
+            {loading ? <Alert type={"loading"}>Loading...</Alert> : children}
         </TestsMaterialsContext.Provider>
     </SetTestsMaterialsContext.Provider>
 }
